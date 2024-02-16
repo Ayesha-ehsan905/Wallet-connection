@@ -15,3 +15,9 @@ export type NetworksType = {
   address?: string;
   eventKey: string;
 };
+export interface WindowChain {
+  ethereum?: {
+    isMetaMask?: true;
+    request?: (...args: any[]) => void;
+  };
+}
