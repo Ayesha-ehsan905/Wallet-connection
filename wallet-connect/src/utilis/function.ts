@@ -1,9 +1,13 @@
 import { Networks } from "./constant";
-import { WindowChain } from "./type";
+import { NetworkDetail, WindowChain } from "./type";
 
-export const setUpNetwork = async (chainID: string = "5") => {
+//error if metamask extension is not installed
+//if user reject the request
+//if chain is not added
+export const setUpNetwork = async (chainID: string) => {
   const provider = (window as WindowChain).ethereum;
-  const networkDetail = await fetchNetworkDetail(+chainID); // current chaai detial
+  const networkDetail = await fetchNetworkDetail(+chainID); // current chain details
+
   if (networkDetail !== undefined) {
     if (provider) {
       const chainId = parseInt(chainID as string, 10);
@@ -17,22 +21,33 @@ export const setUpNetwork = async (chainID: string = "5") => {
         if (switchError?.code === 4001) {
           return 4001; //user reject
         }
-        if (switchError === 4002) {
-          //when network not found and we have to add using add wallet etherum
+        if (switchError?.code === 4902) {
+          try {
+            await provider?.request?.({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: `0x${chainId.toString(16)}`,
+                  chainName: networkDetail.chainName,
+                  nativeCurrency: networkDetail.nativeCurrency,
+                  rpcUrls: networkDetail.rpcUrls,
+                  blockExplorerUrls: networkDetail.blockExplorerUrl,
+                },
+              ],
+            });
+            return true;
+          } catch (error) {
+            console.error(error);
+            return false;
+          }
         }
       }
     }
   }
-
-  console.log(provider);
 };
-export const fetchNetworkDetail = (chainID: number) => {
-  let selectedNetwork;
-  // eslint-disable-next-line
-  Networks.map((item) => {
-    if (item.chainId === chainID) {
-      selectedNetwork = item;
-    }
-  });
-  return selectedNetwork;
+export const fetchNetworkDetail = (
+  chainID: number
+): NetworkDetail | undefined => {
+  const selectedNetwork = Networks.find((item) => item.chainId === chainID);
+  return selectedNetwork as NetworkDetail | undefined;
 };

@@ -21,3 +21,10 @@ export interface WindowChain {
     request?: (...args: any[]) => void;
   };
 }
+export type NetworkDetail = {
+  chainId: number;
+  chainName: string;
+  nativeCurrency: number;
+  rpcUrls: string[];
+  blockExplorerUrl: string[];
+};
