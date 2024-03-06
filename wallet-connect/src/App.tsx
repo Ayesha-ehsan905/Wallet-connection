@@ -1,13 +1,11 @@
-import { setUpNetwork } from "./utilis/function";
+import { useAccount } from "wagmi";
+import { Account } from "./Account";
+import { WalletOptions } from "./WalletOption";
 
 function App() {
-  console.log(setUpNetwork("5"));
-
-  return (
-    <>
-      <h1>Vite + React</h1>
-    </>
-  );
+  const { isConnected } = useAccount();
+  if (isConnected) return <Account />;
+  return <WalletOptions />;
 }
 
 export default App;
