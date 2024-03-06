@@ -3,7 +3,7 @@ import { Connector, useConnect } from "wagmi";
 
 export function WalletOptions() {
   const { connectors, connect } = useConnect();
-
+  //avaible connection option we provided in config file
   return connectors.map((connector) => (
     <WalletOption
       key={connector.uid}
