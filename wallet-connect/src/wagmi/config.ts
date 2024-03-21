@@ -8,9 +8,9 @@ export const config = createConfig({
   connectors: [
     coinbaseWallet({
       appName: "YourAppName",
-      appLogoUrl: "https://example.com/logo.png",
-      darkMode: true,
-      linkAPIUrl: "https://example.com/linkapi",
+      // appLogoUrl: "https://example.com/logo.png",
+      // darkMode: true,
+      // linkAPIUrl: "https://example.com/linkapi",
       // Add other properties as needed
     }),
     walletConnect({ projectId }),
