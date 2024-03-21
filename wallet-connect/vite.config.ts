@@ -7,4 +7,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["@web3-react/core"],
   },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+  },
 });
