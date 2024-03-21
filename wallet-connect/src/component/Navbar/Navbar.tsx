@@ -2,6 +2,9 @@ import { Box, Button, Flex, chakra } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import MarketPlaceIcon from "../Icons/Marketplace";
 const Navbar = () => {
+  const handleClickConnectWallet = () => {
+    console.log("connect wallet");
+  };
   return (
     <>
       <Box width="100%" p={5}>
@@ -18,7 +21,9 @@ const Navbar = () => {
               </Flex>
             </Box>
             <Box>
-              <Button background={"green.2"}>Connect Wallet</Button>
+              <Button background={"green.2"} onClick={handleClickConnectWallet}>
+                Connect Wallet
+              </Button>
             </Box>
           </Flex>
         </Container>
