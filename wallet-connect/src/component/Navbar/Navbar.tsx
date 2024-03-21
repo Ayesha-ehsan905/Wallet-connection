@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Flex,
-  Stack,
-  Wrap,
-  WrapItem,
-  chakra,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, chakra } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import MarketPlaceIcon from "../Icons/Marketplace";
 const Navbar = () => {
