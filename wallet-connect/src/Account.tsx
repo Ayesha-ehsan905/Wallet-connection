@@ -1,4 +1,6 @@
+import { Button } from "@chakra-ui/button";
 import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from "wagmi";
+import { Text } from "@chakra-ui/react";
 
 export function Account() {
   const { address } = useAccount();
@@ -9,8 +11,12 @@ export function Account() {
   return (
     <div>
       {ensAvatar && <img alt="ENS Avatar" src={ensAvatar} />}
-      {address && <div>{ensName ? `${ensName} (${address})` : address}</div>}
-      <button onClick={() => disconnect()}>Disconnect</button>
+      <Text color="white">
+        {address && <div>{ensName ? `${ensName} (${address})` : address}</div>}
+      </Text>
+      <Button background={"white"} onClick={() => disconnect()}>
+        Disconnect
+      </Button>
     </div>
   );
 }
