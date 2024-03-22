@@ -3,10 +3,14 @@ import { Text } from "@chakra-ui/react";
 import MarketPlaceIcon from "../Icons/Marketplace";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { useEffect } from "react";
+import { getConnections } from "@wagmi/core";
+import { config } from "../../wagmi/config";
 const Navbar = () => {
   const { connectors, connect, isSuccess, isError, error } = useConnect();
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
+  const connections = getConnections(config);
+  console.log(connections, "connections");
 
   const toast = useToast();
 
@@ -42,6 +46,7 @@ const Navbar = () => {
       }
 
       // Connect using the Metamask connector
+      // await connect({ connector, chainId: 5 });
       await connect({ connector });
     } catch (error) {
       console.error("metaMask error handling", error);
