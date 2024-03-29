@@ -46,8 +46,8 @@ const Navbar = () => {
       }
 
       // Connect using the Metamask connector
-      // await connect({ connector, chainId: 5 });
-      await connect({ connector });
+      await connect({ connector, chainId: 80001 });
+      // await connect({ connector });
     } catch (error) {
       console.error("metaMask error handling", error);
     }
